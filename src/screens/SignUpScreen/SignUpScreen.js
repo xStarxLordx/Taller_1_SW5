@@ -12,7 +12,7 @@ import Logo from '../../../assets/images/logoMina.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
 
-const SignInScreen = () => {
+const SignUpScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const {height} = useWindowDimensions();
@@ -29,12 +29,8 @@ const SignInScreen = () => {
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Text style={styles.text}>App Mina</Text>
-          <Image
-            source={Logo}
-            style={[styles.logo, {height: height * 0.35}]}
-            resizeMode="contain"
-          />
+            <Text style={styles.text}>Create an account</Text>
+          
           <CustomInput
             placeholder="Username"
             value={username}
@@ -76,6 +72,12 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold"
   },
+  tittle:{
+    fontSize: 40,
+    fontWeight: "bold",
+    color: "#051C60",
+    margin:10,
+  },
 });
 
-export default SignInScreen;
+export default SignUpScreen;
