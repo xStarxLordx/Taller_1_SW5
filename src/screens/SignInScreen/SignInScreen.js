@@ -29,7 +29,7 @@ const SignInScreen = () => {
     <SafeAreaView>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Text style={styles.text}>App Mina</Text>
+          <Text style={styles.text}>App Mina</Text>
           <Image
             source={Logo}
             style={[styles.logo, {height: height * 0.35}]}
@@ -67,14 +67,16 @@ const styles = StyleSheet.create({
   root: {
     alignItems: 'center',
     padding: 20,
+    
   },
 
   logo: {
     width: '75%',
   },
-  text:{
+  text: {
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: 'bold',
+    color: "black"
   },
 });
 

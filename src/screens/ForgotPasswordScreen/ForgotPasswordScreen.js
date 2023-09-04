@@ -55,12 +55,13 @@ const styles = StyleSheet.create({
   },
   text:{
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "black"
   },
   tittle:{
     fontSize: 30,
     fontWeight: "bold",
-    color: "#fff",
+    color: "black",
     margin:10,
     marginVertical:20
   },
