@@ -11,9 +11,7 @@ import CustomButton from '../../components/CustomInput/CustomButton';
 
 const ForgotPasswordScreen = () => {
   const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
-  const [email, setEmail] = useState("");
+ 
 
   const onSendPressed = () => {
     console.warn('Sent');
