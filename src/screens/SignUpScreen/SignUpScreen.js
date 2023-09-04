@@ -8,24 +8,27 @@ import {
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
+import { useNavigation } from "@react-navigation/native"
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const [email, setEmail] = useState("");
+  const navigation = useNavigation();
 
   const onRegisterPressed = () => {
-    console.warn('Register');
+    navigation.navigate("Home");
   };
   const onSignInPressed = () => {
-    console.warn('SignInp');
+    
+    navigation.navigate("SignIn");
   };
   return (
     <SafeAreaView style={{padding:20, marginTop:40}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Text style={styles.text}>Create an account</Text>
+            <Text style={styles.tittle}>Create an account</Text>
           
           <CustomInput
             placeholder="Username"
@@ -79,8 +82,8 @@ const styles = StyleSheet.create({
   tittle:{
     fontSize: 40,
     fontWeight: "bold",
-    color: "#051C60",
-    margin:10,
+    color: "black",
+    marginVertical:30,
   },
 });
 

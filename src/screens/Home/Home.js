@@ -8,23 +8,22 @@ import {
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
-import { useNavigation } from "@react-navigation/native"
 
-const ForgotPasswordScreen = () => {
+const Home = () => {
   const [username, setUsername] = useState("");
  
-  const navigation = useNavigation();
+
   const onSendPressed = () => {
-    navigation.navigate("NewPassword");
+    console.warn('Sent');
   };
   const onSignInPressed = () => {
-    navigation.navigate("SignIn");
+    console.warn('SignInp');
   };
   return (
     <SafeAreaView style={{padding:20, marginTop:40}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Text style={styles.tittle}>Reset your password</Text>
+            <Text style={styles.tittle}>Home</Text>
           
           <CustomInput
             placeholder="Username"
@@ -68,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPasswordScreen;
+export default Home;

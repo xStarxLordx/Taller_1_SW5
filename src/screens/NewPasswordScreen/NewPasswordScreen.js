@@ -2,18 +2,19 @@ import {View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
+import { useNavigation } from "@react-navigation/native"
 
 const NewPasswordScreen = () => {
   const [code, setCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [passwordRepeat, setPasswordRepeat] = useState('');
-
+  const navigation = useNavigation();
 
   const onSubmitPressed = () => {
-    console.warn('Submited');
+    navigation.navigate("Home");
   };
   const onSignInPressed = () => {
-    console.warn('SignInp');
+    navigation.navigate("SignIn");
   };
   return (
     <SafeAreaView style={{padding: 20, marginTop: 40}}>
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   tittle: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#fff',
+    color: 'black',
     margin: 10,
     marginVertical: 20,
   },

@@ -11,19 +11,26 @@ import React, {useState} from 'react';
 import Logo from '../../../assets/images/logoMina.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
+import { useNavigation } from "@react-navigation/native"
 
 const SignInScreen = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const {height} = useWindowDimensions();
+  const navigation = useNavigation();
+
   const onSignInPressed = () => {
     console.warn('Sign in');
+    //validate
+    navigation.navigate("Home");
   };
   const onForgotPasswordPressed = () => {
-    console.warn('onForgotPasswordPressed');
+    
+    navigation.navigate("ForgotPassword");
   };
   const onSignUpPressed = () => {
-    console.warn('Sign Up');
+    
+    navigation.navigate("SignUp");
   };
   return (
     <SafeAreaView>
