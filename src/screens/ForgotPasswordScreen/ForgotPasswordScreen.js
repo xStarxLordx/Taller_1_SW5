@@ -9,14 +9,14 @@ import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
 
-const SignUpScreen = () => {
+const ForgotPasswordScreen = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const [email, setEmail] = useState("");
 
-  const onRegisterPressed = () => {
-    console.warn('Register');
+  const onSendPressed = () => {
+    console.warn('Sent');
   };
   const onSignInPressed = () => {
     console.warn('SignInp');
@@ -25,34 +25,18 @@ const SignUpScreen = () => {
     <SafeAreaView style={{padding:20, marginTop:40}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Text style={styles.text}>Create an account</Text>
+            <Text style={styles.tittle}>Reset your password</Text>
           
           <CustomInput
             placeholder="Username"
             value={username}
             setValue={setUsername}
           />
-          <CustomInput
-            placeholder="Email"
-            value={email}
-            setValue={setEmail}
-          />
-          <CustomInput
-            placeholder="Password"
-            value={password}
-            setValue={setPassword}
-            secureTextEntry
-          />
-          <CustomInput
-            placeholder="Repeat Password"
-            value={passwordRepeat}
-            setValue={setPasswordRepeat}
-            secureTextEntry
-          />
-          <CustomButton text={'Register'} onPress={onRegisterPressed} />
+          
+          <CustomButton text={'Send'} onPress={onSendPressed} />
           
           <CustomButton
-            text={"Have an account? Sign In"}
+            text={"Back to Sign In"}
             onPress={onSignInPressed}
             type="3rd"
           />
@@ -76,11 +60,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold"
   },
   tittle:{
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: "bold",
-    color: "#051C60",
+    color: "#fff",
     margin:10,
+    marginVertical:20
   },
 });
 
-export default SignUpScreen;
+export default ForgotPasswordScreen;
