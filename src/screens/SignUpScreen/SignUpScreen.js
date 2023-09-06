@@ -1,61 +1,91 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  SafeAreaView,
-} from 'react-native';
+import {View, Text, StyleSheet, ScrollView, SafeAreaView, Alert} from 'react-native';
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
-import { useNavigation } from "@react-navigation/native"
+import {useNavigation} from '@react-navigation/native';
+import {useForm, Controller} from 'react-hook-form';
+import {Auth} from 'aws-amplify';
+
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const SignUpScreen = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordRepeat, setPasswordRepeat] = useState("");
-  const [email, setEmail] = useState("");
+  const {control, handleSubmit, watch} = useForm();
   const navigation = useNavigation();
-
+  const pwd = watch("password");
   const onRegisterPressed = () => {
-    navigation.navigate("Home");
+    navigation.navigate('SignIn');
   };
   const onSignInPressed = () => {
-    
-    navigation.navigate("SignIn");
+    navigation.navigate('SignIn');
   };
   return (
-    <SafeAreaView style={{padding:20, marginTop:40}}>
+    <SafeAreaView style={{padding: 20, marginTop: 40}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-            <Text style={styles.tittle}>Create an account</Text>
-          
+          <Text style={styles.tittle}>Create an account</Text>
+
           <CustomInput
+            name="username"
             placeholder="Username"
-            value={username}
-            setValue={setUsername}
+            control={control}
+            rules={{
+              required: 'Username is required',
+              minLength: {
+                value: 5,
+                message: 'The username must have at least 5 characters',
+              },
+              maxLength: {
+                value: 15,
+                message: 'The username can have up to 24 characteres',
+              },
+            }}
           />
           <CustomInput
+            name="email"
             placeholder="Email"
-            value={email}
-            setValue={setEmail}
+            control={control}
+            rules={{
+              required: 'Email is required',
+              pattern: {value: EMAIL_REGEX, message: 'Email is invalid'},
+            }}
           />
           <CustomInput
+            name="password"
             placeholder="Password"
-            value={password}
-            setValue={setPassword}
             secureTextEntry
+            control={control}
+            rules={{
+              required: 'Password is required',
+              minLength: {
+                value: 8,
+                message: 'Password should be minimum 8 characters long',
+              },
+              pattern: {
+                value:
+                  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*:();+=!?]).{8,}$/,
+                message:
+                  'The password must have special caracter (@#$%^&*:();+=!?), a number, an uppercase letter and an lowercase letter',
+              },
+            }}
           />
-          <CustomInput
-            placeholder="Repeat Password"
-            value={passwordRepeat}
-            setValue={setPasswordRepeat}
-            secureTextEntry
-          />
-          <CustomButton text={'Register'} onPress={onRegisterPressed} />
           
+          <CustomInput
+            name="repeatPassword"
+            placeholder="Repeat Password"
+            secureTextEntry
+            control={control}
+            rules={{
+              required: 'Password is required',
+              validate: value => value === pwd || 'Password do not match',
+            }}
+          />
           <CustomButton
-            text={"Have an account? Sign In"}
+            text={'Register'}
+            onPress={handleSubmit(onRegisterPressed)}
+          />
+
+          <CustomButton
+            text={'Have an account? Sign In'}
             onPress={onSignInPressed}
             type="3rd"
           />
@@ -74,16 +104,16 @@ const styles = StyleSheet.create({
   logo: {
     width: '75%',
   },
-  text:{
+  text: {
     fontSize: 30,
-    fontWeight: "bold",
-    color: "black"
+    fontWeight: 'bold',
+    color: 'black',
   },
-  tittle:{
+  tittle: {
     fontSize: 40,
-    fontWeight: "bold",
-    color: "black",
-    marginVertical:30,
+    fontWeight: 'bold',
+    color: 'black',
+    marginVertical: 30,
   },
 });
 
