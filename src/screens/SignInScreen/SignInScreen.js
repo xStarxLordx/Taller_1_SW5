@@ -14,11 +14,15 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
+import Persona from '../../clases/Persona';
+
 
 const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
-//a
+
+
+
   const {
     control,
     handleSubmit,
@@ -27,11 +31,14 @@ const SignInScreen = () => {
   
   const onSignInPressed = data => {
     //validate
-    console.log(data);
-    navigation.navigate('Home');
+    console.log();
+    //navigation.navigate('Home');
   };
-  const onForgotPasswordPressed = () => {
+  /* const onForgotPasswordPressed = () => {
     navigation.navigate('ForgotPassword');
+  }; */
+  const onForgotPasswordPressed = () => {
+    Persona.call(consultarDatos("username", "password"))
   };
   const onSignUpPressed = () => {
     navigation.navigate('SignUp');
@@ -73,8 +80,13 @@ const SignInScreen = () => {
           text={'Sign In'}
           onPress={handleSubmit(onSignInPressed)}
         />
-        <CustomButton
+        {/* <CustomButton
           text={'Forgot Password'}
+          onPress={onForgotPasswordPressed}
+          type="3rd"
+        /> */}
+        <CustomButton
+          text={'persona'}
           onPress={onForgotPasswordPressed}
           type="3rd"
         />

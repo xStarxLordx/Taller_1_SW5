@@ -4,7 +4,8 @@ import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
 import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
-import {Auth} from 'aws-amplify';
+import Persona from '../../clases/Persona';
+
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -12,12 +13,18 @@ const SignUpScreen = () => {
   const {control, handleSubmit, watch} = useForm();
   const navigation = useNavigation();
   const pwd = watch("password");
+  const eml = watch("email");
   const onRegisterPressed = () => {
+    console.log(eml);
+    console.log(pwd);
+    const minero = new Persona(eml, pwd);
+    console.log(`${minero.getEmail()}`)
     navigation.navigate('SignIn');
   };
   const onSignInPressed = () => {
     navigation.navigate('SignIn');
   };
+const [persona, setPersona] = useState("");
   return (
     <SafeAreaView style={{padding: 20, marginTop: 40}}>
       <ScrollView showsVerticalScrollIndicator={false}>
