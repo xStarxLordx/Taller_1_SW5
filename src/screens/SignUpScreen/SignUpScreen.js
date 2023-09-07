@@ -24,7 +24,7 @@ const SignUpScreen = () => {
   const onSignInPressed = () => {
     navigation.navigate('SignIn');
   };
-const [persona, setPersona] = useState("");
+
   return (
     <SafeAreaView style={{padding: 20, marginTop: 40}}>
       <ScrollView showsVerticalScrollIndicator={false}>

@@ -21,7 +21,9 @@ const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
 
-
+  const persona = new Persona('usuario@example.com', 'contraseña123');
+  console.log(`Email: ${persona.getEmail()}`);
+  console.log(`Contraseña: ${persona.getPassword()}`);
 
   const {
     control,
@@ -32,7 +34,8 @@ const SignInScreen = () => {
   const onSignInPressed = data => {
     //validate
     console.log();
-    //navigation.navigate('Home');
+    
+    navigation.navigate('Home')
   };
   /* const onForgotPasswordPressed = () => {
     navigation.navigate('ForgotPassword');
