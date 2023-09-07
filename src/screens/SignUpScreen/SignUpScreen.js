@@ -18,7 +18,7 @@ const SignUpScreen = () => {
     console.log(eml);
     console.log(pwd);
     const minero = new Persona(eml, pwd);
-    console.log(`${minero.getEmail()}`)
+  
     navigation.navigate('SignIn');
   };
   const onSignInPressed = () => {

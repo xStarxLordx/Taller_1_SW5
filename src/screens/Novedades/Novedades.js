@@ -7,39 +7,28 @@ import DatePicker from 'react-native-date-picker';
 import {useNavigation} from '@react-navigation/native';
 
 
-const Home = () => {
+const Novedades = () => {
   const {
     control,
     formState: {errors},
   } = useForm();
   const navigation = useNavigation();
-  const onSavePressed = () => {
-    navigation.navigate("RegistroHoras")
-    
-  };
-  const onSeePressed = () => {
-    
-    console.warn('Consultar');
-  };
-  const onNewsPressed = () => {
-    navigation.navigate("Novedades")
-    console.warn('Novedades');
-  };
-  const onSignInPressed = () => {
-    navigation.navigate('SignIn');
+  
+  const onHomePressed = () => {
+    navigation.navigate('Home');
   };
   return (
     <SafeAreaView style={{padding: 20, marginTop: 40}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-          <Text style={styles.tittle}>Home</Text>
+          
 
-          <CustomButton text={'Registro Horas'} onPress={onSavePressed} />
-          <CustomButton text={'Consulta Horas'} onPress={onSeePressed} />
-          <CustomButton text={'Novedades'} onPress={onNewsPressed} />
+          <Text style={styles.tittle}> Novedades </Text>
+          
+
           <CustomButton
-            text={'Back to Sign In'}
-            onPress={onSignInPressed}
+            text={'Back to Home'}
+            onPress={onHomePressed}
             type="3rd"
           />
         </View>
@@ -72,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default Novedades;

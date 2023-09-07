@@ -8,7 +8,7 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, createContext, useContext} from 'react';
 import Logo from '../../../assets/images/logoMina.png';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
@@ -20,29 +20,22 @@ import Persona from '../../clases/Persona';
 const SignInScreen = () => {
   const {height} = useWindowDimensions();
   const navigation = useNavigation();
-
-  const persona = new Persona('usuario@example.com', 'contraseña123');
-  console.log(`Email: ${persona.getEmail()}`);
-  console.log(`Contraseña: ${persona.getPassword()}`);
-
+  const [limpiar,setLimpiar] = useState("");
   const {
     control,
     handleSubmit,
     formState: {errors},
   } = useForm();
   
-  const onSignInPressed = data => {
-    //validate
-    console.log();
-    
+  const onSignInPressed = () => {
+    //validar
+    setLimpiar(" ");
     navigation.navigate('Home')
   };
   /* const onForgotPasswordPressed = () => {
     navigation.navigate('ForgotPassword');
   }; */
-  const onForgotPasswordPressed = () => {
-    Persona.call(consultarDatos("username", "password"))
-  };
+
   const onSignUpPressed = () => {
     navigation.navigate('SignUp');
   };
@@ -66,6 +59,7 @@ const SignInScreen = () => {
           placeholder="Password"
           secureTextEntry
           control={control}
+          
           rules={{
             required: 'Password is required',
             minLength: {
@@ -78,7 +72,7 @@ const SignInScreen = () => {
           },
           }}
         />
-
+        
         <CustomButton
           text={'Sign In'}
           onPress={handleSubmit(onSignInPressed)}
@@ -88,16 +82,13 @@ const SignInScreen = () => {
           onPress={onForgotPasswordPressed}
           type="3rd"
         /> */}
-        <CustomButton
-          text={'persona'}
-          onPress={onForgotPasswordPressed}
-          type="3rd"
-        />
+       
         <CustomButton
           text={"Don't have an account? Sign Up!"}
           onPress={onSignUpPressed}
           type="3rd"
         />
+
       </View>
     </ScrollView>
   );
