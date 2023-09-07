@@ -2,24 +2,22 @@ import {View, Text, StyleSheet, ScrollView, SafeAreaView} from 'react-native';
 import React, {useState} from 'react';
 import CustomInput from '../../components/CustomInput';
 import CustomButton from '../../components/CustomInput/CustomButton';
+import {useNavigation} from '@react-navigation/native';
 import {useForm, Controller} from 'react-hook-form';
 import DatePicker from 'react-native-date-picker';
-import {useNavigation} from '@react-navigation/native';
 
-
-const Home = () => {
+const RegistroHoras = () => {
   const {
     control,
     formState: {errors},
   } = useForm();
   const navigation = useNavigation();
-  const onSavePressed = () => {
-    navigation.navigate("RegistroHoras")
+  const [date, setDate] = useState(new Date());
+  const [time, setTime ] = useState(new  Date());
+  const [user, setUser] = useState("");
+  const onSendPressed = () => {
     console.warn('Guardado');
-  };
-  const onSeePressed = () => {
-    
-    console.warn('Consultar');
+    navigation.navigate('Home')
   };
   const onSignInPressed = () => {
     navigation.navigate('SignIn');
@@ -28,10 +26,31 @@ const Home = () => {
     <SafeAreaView style={{padding: 20, marginTop: 40}}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.root}>
-          
+          <Text style={styles.tittle}>Registro de Horas</Text>
+          <Text style={styles.text}> Fecha y hora de inicio: </Text>
+          <DatePicker
+            locale="es"
+            mode="datetime"
+            date={date}
+            onDateChange={() => setDate(new Date())}
+          />
+          <DatePicker
+            locale="es"
+            mode="time"
+            date={time}
+            onDateChange={() => setTime(new Date())}
+          /> 
 
-          <CustomButton text={'Registro Horas'} onPress={onSavePressed} />
-          <CustomButton text={'Consulta Horas'} onPress={onSeePressed} />
+          {/* <CustomInput
+            name="user"
+            placeholder="Username"
+            value = {user}
+            control={control}
+            rules={{required: ''}}
+            onChangeText={setUser}
+          /> */}
+
+          <CustomButton text={'Guardar'} onPress={onSendPressed} />
 
           <CustomButton
             text={'Back to Sign In'}
@@ -68,4 +87,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+export default RegistroHoras;
