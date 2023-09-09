@@ -19,13 +19,21 @@ const RegistroHoras = () => {
     formState: {errors},
   } = useForm();
   const navigation = useNavigation();
-  const [date, setDate] = useState(new Date());
+  //const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
   const [time, setTime] = useState(new Date());
   const [textItem, setTextItem] = useState('');
   const [items, setItems] = useState([]);
   const [total, setTotal] = useState('');
+  const date = new Date();
 
+  const n = date.toDateString();
+
+  const time1 = date.toLocaleTimeString();
+
+  console.log('Date: ' + n);
+
+  console.log('Time: ' + time);
   const onSavePressed = () => {
     console.log(
       (time.getHours() +(time.getMinutes() / 60) )-
@@ -60,7 +68,11 @@ const RegistroHoras = () => {
       
         <Text style={styles.tittle}>Registro de Horas:</Text>
         <View style={styles.root}>
-          <CustomButton text="Registrar" onPress={() => setOpen(true)} />
+            <Text style={[styles.tittle, {marginBottom:20}]}>Hora de inicio:</Text>
+
+            <Text style={styles.text} >{n}</Text>
+            <Text style={styles.text}>{time1}</Text>
+            <Text style={[styles.tittle, {marginBottom:20}]}>Hora de final:</Text>
 
           <DatePicker
             title={'Fin de turno'}
@@ -75,12 +87,13 @@ const RegistroHoras = () => {
               setOpen(false);
             }}
           />
-
-          <DatePicker
+          <CustomButton text="Registrar" onPress={() => setOpen(true)} />
+          {/* <DatePicker
             title={'Inicio de turno'}
             modal
             open={open}
             date={date}
+            
             onConfirm={date => {
               setOpen(false);
               setDate(date);
@@ -89,7 +102,7 @@ const RegistroHoras = () => {
               setOpen(false);
             }}
           />
-
+ */}
           {/* <CustomInput
             name="user"
             placeholder="Username"
@@ -132,7 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: 'black',
-    alignSelf: 'flex-start',
+    alignSelf: 'center',
   },
   tittle: {
     fontSize: 30,
